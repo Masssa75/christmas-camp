@@ -164,6 +164,82 @@
             line-height: 1.6;
         }
 
+        /* Program Cards */
+        .program-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .program-card {
+            position: relative;
+            height: 700px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            color: white;
+        }
+
+        .program-card h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .program-card .age {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .program-card .description {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .program-card .schedule {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .program-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .program-card .price-note {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .program-card .cta-btn {
+            display: block;
+            background: white;
+            color: #7a9a3b;
+            text-align: center;
+            padding: 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
         @media (max-width: 768px) {
             .hero {
                 min-height: 500px;
@@ -184,6 +260,61 @@
 
             .outcome-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Program Cards Mobile */
+            .program-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .program-card {
+                height: 600px;
+            }
+
+            .program-card-content {
+                padding: 30px;
+            }
+
+            .program-card h3 {
+                font-size: 2rem;
+            }
+
+            .program-card .age {
+                font-size: 1.2rem;
+            }
+
+            .program-card .description {
+                font-size: 0.95rem;
+            }
+
+            .program-card .schedule {
+                font-size: 0.9rem;
+            }
+
+            .program-card .price {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+
+            .program-card .price-note {
+                font-size: 0.85rem;
+                margin-bottom: 15px;
+            }
+
+            .program-card .cta-btn {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+
+            /* Program section title */
+            #programs h2 {
+                font-size: 2rem !important;
+            }
+
+            #programs p {
+                font-size: 1rem !important;
+                margin-bottom: 40px !important;
             }
         }
     </style>
@@ -247,32 +378,32 @@
         <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; text-align: center; color: #333;">Choose Your Program</h2>
         <p style="font-size: 1.2rem; color: #666; text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">Two exciting programs designed for different age groups</p>
 
-        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        <div class="program-grid">
             <!-- Mini Camp Card -->
-            <div style="position: relative; height: 700px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_1205.JPG'); background-size: cover; background-position: center; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+            <div class="program-card" style="background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_1205.JPG');">
                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
-                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; color: white;">
-                    <h3 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Mini Camp</h3>
-                    <p style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px;">Ages 3-6</p>
-                    <p style="font-size: 1.05rem; margin-bottom: 20px; line-height: 1.6;">On-site nature activities: animal care, gardening, baking, yoga, arts & crafts</p>
-                    <p style="font-size: 1rem; margin-bottom: 20px; opacity: 0.95;">Dec 15-19 & Dec 22-26 • 8AM-5PM</p>
-                    <p style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">11,000฿/week</p>
-                    <a href="#register" style="display: block; background: white; color: #7a9a3b; text-align: center; padding: 18px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.2rem;">Choose Mini Camp</a>
+                <div class="program-card-content">
+                    <h3>Mini Camp</h3>
+                    <p class="age">Ages 3-6</p>
+                    <p class="description">On-site nature activities: animal care, gardening, baking, yoga, arts & crafts</p>
+                    <p class="schedule">Dec 15-19 & Dec 22-26 • 8AM-5PM</p>
+                    <p class="price">11,000฿/week</p>
+                    <a href="#register" class="cta-btn">Choose Mini Camp</a>
                 </div>
             </div>
 
             <!-- Maxi Camp Card -->
-            <div style="position: relative; height: 700px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_2047.jpeg'); background-size: cover; background-position: center; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 4px solid #7a9a3b;">
+            <div class="program-card" style="background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_2047.jpeg'); border: 4px solid #7a9a3b;">
                 <div style="position: absolute; top: 20px; right: 20px; background: white; color: #7a9a3b; padding: 10px 25px; border-radius: 25px; font-weight: 700; font-size: 1rem; z-index: 10;">Early Bird</div>
                 <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
-                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; color: white;">
-                    <h3 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Maxi Camp</h3>
-                    <p style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px;">Ages 6-10</p>
-                    <p style="font-size: 1.05rem; margin-bottom: 20px; line-height: 1.6;">Field trips: beach days, elephant sanctuary, marine biology, Muay Thai</p>
-                    <p style="font-size: 1rem; margin-bottom: 20px; opacity: 0.95;">Dec 15-19 & Dec 22-26 • 8AM-5PM</p>
-                    <p style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">13,000฿/week</p>
-                    <p style="font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9;">Pay by Nov 30 • Regular: 15,000฿</p>
-                    <a href="#register" style="display: block; background: white; color: #7a9a3b; text-align: center; padding: 18px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.2rem;">Choose Maxi Camp</a>
+                <div class="program-card-content">
+                    <h3>Maxi Camp</h3>
+                    <p class="age">Ages 6-10</p>
+                    <p class="description">Field trips: beach days, elephant sanctuary, marine biology, Muay Thai</p>
+                    <p class="schedule">Dec 15-19 & Dec 22-26 • 8AM-5PM</p>
+                    <p class="price">13,000฿/week</p>
+                    <p class="price-note">Pay by Nov 30 • Regular: 15,000฿</p>
+                    <a href="#register" class="cta-btn">Choose Maxi Camp</a>
                 </div>
             </div>
         </div>
