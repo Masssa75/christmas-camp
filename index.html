@@ -317,6 +317,50 @@
                 margin-bottom: 40px !important;
             }
         }
+
+        /* Floating WhatsApp Button */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        .floating-whatsapp svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        @media (max-width: 768px) {
+            .floating-whatsapp {
+                width: 56px;
+                height: 56px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-whatsapp svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -503,6 +547,13 @@
             <p style="margin-top: 20px; font-size: 1rem; color: #999;">Bamboo Valley, Phuket</p>
         </div>
     </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/66989124218?text=Hi!%20I%27m%20interested%20in%20the%20Christmas%20Nature%20Camp." class="floating-whatsapp" aria-label="Contact us on WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.164 0 0 7.164 0 16c0 2.832.748 5.484 2.052 7.78L.696 29.928l6.348-1.664A15.923 15.923 0 0016 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm9.38 22.516c-.38 1.076-2.244 2.036-3.092 2.164-.848.128-1.78.252-5.164-.64-4.344-1.148-7.14-5.6-7.356-5.856-.216-.256-1.764-2.348-1.764-4.48 0-2.132 1.116-3.18 1.512-3.612.396-.432.864-.54 1.152-.54.288 0 .576.004.828.012.264.012.624-.1.972.74.356.86 1.212 2.952 1.32 3.168.108.216.18.468.036.724-.144.256-.216.416-.432.64-.216.224-.456.5-.648.672-.216.192-.444.4-.192.788.252.388 1.12 1.848 2.404 2.992 1.652 1.472 3.048 1.932 3.48 2.148.432.216.684.18.936-.108.252-.288 1.08-1.26 1.368-1.692.288-.432.576-.36.972-.216.396.144 2.52 1.188 2.952 1.404.432.216.72.324.828.504.108.18.108 1.044-.272 2.12z"/>
+        </svg>
+    </a>
 
     <script>
         lucide.createIcons();
