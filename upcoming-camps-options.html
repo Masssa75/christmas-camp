@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Camps - Layout Options</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .option {
+            background: white;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .option-label {
+            background: #7a9a3b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* Option 1 - Card Style */
+        .camp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .camp-card {
+            background: #f9f9f9;
+            border: 3px solid #7a9a3b;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        .camp-card h3 {
+            color: #7a9a3b;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .camp-detail {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .camp-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #7a9a3b;
+            margin: 15px 0;
+        }
+        .register-btn {
+            background: #7a9a3b;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .register-btn:hover {
+            background: #68842f;
+            transform: translateY(-2px);
+        }
+
+        /* Option 2 - Timeline Style */
+        .camp-timeline {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border-left: 5px solid #7a9a3b;
+        }
+        .timeline-date {
+            min-width: 120px;
+            text-align: center;
+        }
+        .timeline-month {
+            font-size: 0.9rem;
+            color: #7a9a3b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .timeline-days {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #333;
+        }
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .timeline-info {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        /* Option 3 - Compact List */
+        .camp-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        .list-item:hover {
+            border-color: #7a9a3b;
+            box-shadow: 0 4px 12px rgba(122, 154, 59, 0.15);
+        }
+        .list-left h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .list-meta {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        .list-right {
+            text-align: right;
+        }
+        .list-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #7a9a3b;
+            margin-bottom: 8px;
+        }
+
+        /* Option 4 - Badge Pills */
+        .camp-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .badge-row {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #7a9a3b 0%, #68842f 100%);
+            border-radius: 50px;
+            color: white;
+        }
+        .badge-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            flex: 1;
+        }
+        .badge-pill {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+        .badge-btn {
+            background: white;
+            color: #7a9a3b;
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .camp-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .list-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .badge-row {
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Option 1: Card Style -->
+    <div class="option">
+        <div class="option-label">Option 1 - Card Grid</div>
+        <h2>Upcoming Camps</h2>
+        <p class="subtitle">Join us for nature-based learning adventures throughout the year</p>
+
+        <div class="camp-grid">
+            <div class="camp-card">
+                <h3>Christmas Camp</h3>
+                <div class="camp-detail">📅 Dec 15-19 & 22-26, 2025</div>
+                <div class="camp-detail">👶 Ages 3-10</div>
+                <div class="camp-price">11,000-13,000฿</div>
+                <a href="#" class="register-btn">Register Now</a>
+            </div>
+
+            <div class="camp-card">
+                <h3>Songkran Camp</h3>
+                <div class="camp-detail">📅 April 7-11, 2026</div>
+                <div class="camp-detail">👶 Ages 3-10</div>
+                <div class="camp-price">11,000-13,000฿</div>
+                <a href="#" class="register-btn">Register Now</a>
+            </div>
+
+            <div class="camp-card">
+                <h3>Summer Camp</h3>
+                <div class="camp-detail">📅 June-July 2026</div>
+                <div class="camp-detail">👶 Ages 3-10</div>
+                <div class="camp-price">TBA</div>
+                <a href="#" class="register-btn">Register Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Option 2: Timeline Style -->
+    <div class="option">
+        <div class="option-label">Option 2 - Timeline</div>
+        <h2>Upcoming Camps</h2>
+        <p class="subtitle">Join us for nature-based learning adventures throughout the year</p>
+
+        <div class="camp-timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-month">Dec</div>
+                    <div class="timeline-days">15-26</div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Christmas Nature Camp</h3>
+                    <div class="timeline-info">📅 Two weeks: Dec 15-19 & Dec 22-26, 2025</div>
+                    <div class="timeline-info">👶 Ages 3-10 (Mini & Maxi programs)</div>
+                    <div class="timeline-info">💰 11,000-13,000฿ per week</div>
+                    <a href="#" class="register-btn">Register Now</a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-month">Apr</div>
+                    <div class="timeline-days">7-11</div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Songkran Nature Camp</h3>
+                    <div class="timeline-info">📅 April 7-11, 2026</div>
+                    <div class="timeline-info">👶 Ages 3-10</div>
+                    <div class="timeline-info">💰 11,000-13,000฿</div>
+                    <a href="#" class="register-btn">Register Now</a>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">
+                    <div class="timeline-month">Jun-Jul</div>
+                    <div class="timeline-days">2026</div>
+                </div>
+                <div class="timeline-content">
+                    <h3>Summer Nature Camp</h3>
+                    <div class="timeline-info">📅 June-July 2026 (dates TBA)</div>
+                    <div class="timeline-info">👶 Ages 3-10</div>
+                    <div class="timeline-info">💰 Pricing TBA</div>
+                    <a href="#" class="register-btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Option 3: Compact List -->
+    <div class="option">
+        <div class="option-label">Option 3 - Compact List</div>
+        <h2>Upcoming Camps</h2>
+        <p class="subtitle">Join us for nature-based learning adventures throughout the year</p>
+
+        <div class="camp-list">
+            <div class="list-item">
+                <div class="list-left">
+                    <h3>Christmas Nature Camp</h3>
+                    <div class="list-meta">Dec 15-19 & 22-26, 2025 • Ages 3-10</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-price">11,000-13,000฿</div>
+                    <a href="#" class="register-btn">Register</a>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-left">
+                    <h3>Songkran Nature Camp</h3>
+                    <div class="list-meta">April 7-11, 2026 • Ages 3-10</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-price">11,000-13,000฿</div>
+                    <a href="#" class="register-btn">Register</a>
+                </div>
+            </div>
+
+            <div class="list-item">
+                <div class="list-left">
+                    <h3>Summer Nature Camp</h3>
+                    <div class="list-meta">June-July 2026 • Ages 3-10</div>
+                </div>
+                <div class="list-right">
+                    <div class="list-price">TBA</div>
+                    <a href="#" class="register-btn">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Option 4: Badge Pills -->
+    <div class="option">
+        <div class="option-label">Option 4 - Badge Pills</div>
+        <h2>Upcoming Camps</h2>
+        <p class="subtitle">Join us for nature-based learning adventures throughout the year</p>
+
+        <div class="camp-badges">
+            <div class="badge-row">
+                <div class="badge-name">Christmas Camp</div>
+                <div class="badge-pill">Dec 15-26, 2025</div>
+                <div class="badge-pill">Ages 3-10</div>
+                <div class="badge-pill">11,000-13,000฿</div>
+                <a href="#" class="badge-btn">Register</a>
+            </div>
+
+            <div class="badge-row">
+                <div class="badge-name">Songkran Camp</div>
+                <div class="badge-pill">April 7-11, 2026</div>
+                <div class="badge-pill">Ages 3-10</div>
+                <div class="badge-pill">11,000-13,000฿</div>
+                <a href="#" class="badge-btn">Register</a>
+            </div>
+
+            <div class="badge-row">
+                <div class="badge-name">Summer Camp</div>
+                <div class="badge-pill">June-July 2026</div>
+                <div class="badge-pill">Ages 3-10</div>
+                <div class="badge-pill">TBA</div>
+                <a href="#" class="badge-btn">Register</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

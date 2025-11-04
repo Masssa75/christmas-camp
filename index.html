@@ -136,6 +136,246 @@
             color: #333;
         }
 
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .option-label {
+            background: #7a9a3b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Upcoming Camps - Card Style */
+        .camp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .camp-card {
+            background: white;
+            border: 3px solid #7a9a3b;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .camp-card h3 {
+            color: #7a9a3b;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .camp-detail {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .camp-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #7a9a3b;
+            margin: 15px 0;
+        }
+
+        /* Upcoming Camps - Timeline Style */
+        .camp-timeline {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            border-left: 5px solid #7a9a3b;
+        }
+
+        .timeline-date {
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .timeline-month {
+            font-size: 0.9rem;
+            color: #7a9a3b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .timeline-days {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .timeline-info {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        /* Upcoming Camps - Compact List */
+        .camp-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+
+        .list-item:hover {
+            border-color: #7a9a3b;
+            box-shadow: 0 4px 12px rgba(122, 154, 59, 0.15);
+        }
+
+        .list-left h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .list-meta {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .list-right {
+            text-align: right;
+        }
+
+        .list-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #7a9a3b;
+            margin-bottom: 8px;
+        }
+
+        /* Cute Variations */
+        .cute-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .cute-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cute-emoji {
+            font-size: 2.5rem;
+            margin-right: 20px;
+        }
+
+        .cute-content {
+            flex: 1;
+        }
+
+        .cute-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .cute-meta {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .cute-badge {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .rounded-item {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .rounded-item:hover {
+            box-shadow: 0 8px 25px rgba(122, 154, 59, 0.2);
+        }
+
+        .rounded-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .rounded-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7a9a3b 0%, #68842f 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 20px;
+        }
+
+        .rounded-details {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .rounded-tag {
+            background: #f0f7e8;
+            color: #7a9a3b;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
         /* Watch Them Grow - 4 outcome cards */
         .outcome-grid {
             display: grid;
@@ -260,6 +500,42 @@
 
             .outcome-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Upcoming Camps Mobile */
+            .camp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .list-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .cute-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cute-emoji {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .rounded-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rounded-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
 
             /* Program Cards Mobile */
@@ -390,6 +666,44 @@
                 <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
                 WhatsApp: +66 98 912 4218
             </a>
+        </div>
+    </section>
+
+    <!-- Upcoming Camps -->
+    <section style="padding: 80px 20px; background: url('backgrounds/5F1B0766-367A-4892-8D9E-D9006FBB64EB.jpeg') center/cover; position: relative;">
+        <div style="position: absolute; inset: 0; background: rgba(255, 255, 255, 0.85);"></div>
+        <div style="position: relative; z-index: 1;">
+            <h2 class="section-title">Upcoming Camps</h2>
+            <p class="section-subtitle">Join us for nature-based learning adventures throughout the year</p>
+
+            <div class="camp-list">
+                <div class="cute-item" style="background: linear-gradient(135deg, #fef0e8 0%, #ffe8d8 100%);">
+                    <div class="cute-emoji">🎄</div>
+                    <div class="cute-content">
+                        <h3 style="color: #d15b47;">Christmas Nature Camp</h3>
+                        <div class="cute-meta" style="color: #d15b47;">Dec 15-19 & 22-26, 2025 • Ages 3-10 • 11,000-13,000฿</div>
+                    </div>
+                    <a href="https://wa.me/66989124218?text=Hi!%20I%27m%20interested%20in%20the%20Christmas%20Camp." class="cta-button" style="display: inline-block;">Register</a>
+                </div>
+
+                <div class="cute-item" style="background: linear-gradient(135deg, #e8f3ff 0%, #d8ebff 100%);">
+                    <div class="cute-emoji">🌸</div>
+                    <div class="cute-content">
+                        <h3 style="color: #4a90d9;">Songkran Nature Camp</h3>
+                        <div class="cute-meta" style="color: #4a90d9;">April 7-11, 2026 • Ages 3-10 • 11,000-13,000฿</div>
+                    </div>
+                    <a href="https://wa.me/66989124218?text=Hi!%20I%27m%20interested%20in%20the%20Songkran%20Camp." class="cta-button" style="display: inline-block;">Register</a>
+                </div>
+
+                <div class="cute-item" style="background: linear-gradient(135deg, #fffbe8 0%, #fff8d8 100%);">
+                    <div class="cute-emoji">☀️</div>
+                    <div class="cute-content">
+                        <h3 style="color: #e6a23c;">Summer Nature Camp</h3>
+                        <div class="cute-meta" style="color: #e6a23c;">June-July 2026 • Ages 3-10 • TBA</div>
+                    </div>
+                    <a href="https://wa.me/66989124218?text=Hi!%20I%27m%20interested%20in%20the%20Summer%20Camp." class="cta-button" style="display: inline-block;">Register</a>
+                </div>
+            </div>
         </div>
     </section>
 
