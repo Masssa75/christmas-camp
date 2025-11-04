@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Nature Camp - Bamboo Valley Phuket</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 80px;
+            text-align: left;
+            color: white;
+            padding: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .hero-header {
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .stats-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 0 auto 40px;
+            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .stats-source {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #333;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        /* Watch Them Grow - 4 outcome cards */
+        .outcome-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .outcome-card {
+            background: #f5f5f5;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 5px solid #7a9a3b;
+        }
+
+        .outcome-card h3 {
+            font-size: 1.8rem;
+            color: #7a9a3b;
+            margin-bottom: 15px;
+        }
+
+        .outcome-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 500px;
+                padding: 60px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .outcome-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section with Video -->
+    <section class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop playsinline>
+                <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="hero-content">
+            <div class="hero-header">Christmas Nature Camp</div>
+            <h1>Nature Skills for Life</h1>
+            <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills. Two programs designed for different age groups—all under 80+ palm trees.</p>
+            <div class="stats-box">
+                ✓ 78% increased confidence<br>
+                ✓ 82% better teamwork<br>
+                ✓ 28 days to stronger immunity
+                <div class="stats-source">*Based on UK Scouts research & Finnish nature studies</div>
+            </div>
+            <a href="#programs" class="cta-button">Choose Your Program</a>
+        </div>
+    </section>
+
+    <!-- Choose Your Program -->
+    <section id="programs" style="padding: 100px 20px; background: white;">
+        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; text-align: center; color: #333;">Choose Your Program</h2>
+        <p style="font-size: 1.2rem; color: #666; text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">Two exciting programs designed for different age groups</p>
+
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            <!-- Mini Camp Card -->
+            <div style="position: relative; height: 700px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_1205.JPG'); background-size: cover; background-position: center; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; color: white;">
+                    <h3 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Mini Camp</h3>
+                    <p style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px;">Ages 3-6</p>
+                    <p style="font-size: 1.05rem; margin-bottom: 20px; line-height: 1.6;">On-site nature activities: animal care, gardening, baking, yoga, arts & crafts</p>
+                    <p style="font-size: 1rem; margin-bottom: 20px; opacity: 0.95;">Dec 15-19 & Dec 22-26 • 8AM-5PM</p>
+                    <p style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px;">11,000฿/week</p>
+                    <a href="#register" style="display: block; background: white; color: #7a9a3b; text-align: center; padding: 18px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.2rem;">Choose Mini Camp</a>
+                </div>
+            </div>
+
+            <!-- Maxi Camp Card -->
+            <div style="position: relative; height: 700px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_2047.jpeg'); background-size: cover; background-position: center; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); border: 4px solid #7a9a3b;">
+                <div style="position: absolute; top: 20px; right: 20px; background: white; color: #7a9a3b; padding: 10px 25px; border-radius: 25px; font-weight: 700; font-size: 1rem; z-index: 10;">Early Bird</div>
+                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%);"></div>
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; color: white;">
+                    <h3 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 10px;">Maxi Camp</h3>
+                    <p style="font-size: 1.4rem; font-weight: 700; margin-bottom: 20px;">Ages 6-10</p>
+                    <p style="font-size: 1.05rem; margin-bottom: 20px; line-height: 1.6;">Field trips: beach days, elephant sanctuary, marine biology, Muay Thai</p>
+                    <p style="font-size: 1rem; margin-bottom: 20px; opacity: 0.95;">Dec 15-19 & Dec 22-26 • 8AM-5PM</p>
+                    <p style="font-size: 2.5rem; font-weight: 800; margin-bottom: 5px;">13,000฿/week</p>
+                    <p style="font-size: 0.95rem; margin-bottom: 20px; opacity: 0.9;">Pay by Nov 30 • Regular: 15,000฿</p>
+                    <a href="#register" style="display: block; background: white; color: #7a9a3b; text-align: center; padding: 18px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.2rem;">Choose Maxi Camp</a>
+                </div>
+            </div>
+        </div>
+
+        <p style="font-size: 1rem; color: #999; text-align: center; margin-top: 40px;">Both programs include: Organic meals • Licensed native English teachers • All materials</p>
+    </section>
+
+    <!-- Watch Them Grow Section -->
+    <section style="padding: 80px 20px; background: white;">
+        <h2 class="section-title">Watch Them Grow</h2>
+        <p style="text-align: center; max-width: 900px; margin: 0 auto 50px; font-size: 1.1rem; color: #666; line-height: 1.7;">
+            Our program integrates proven methods from the UK Scouts and Finnish nature research
+        </p>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            <div style="position: relative; height: 400px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_2047.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 30px; color: white;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 10px; font-weight: 700;">Confidence</h3>
+                    <p style="font-size: 1rem; line-height: 1.5;">Trying new things, speaking up, taking on challenges</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 400px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_1205.JPG'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 30px; color: white;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 10px; font-weight: 700;">Teamwork</h3>
+                    <p style="font-size: 1rem; line-height: 1.5;">Helping friends, working together, sharing discoveries</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 400px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_0829.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 30px; color: white;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 10px; font-weight: 700;">Strong Immunity</h3>
+                    <p style="font-size: 1rem; line-height: 1.5;">Building health through outdoor play and nature exposure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section - Mini Camp -->
+    <section style="padding: 80px 20px; background: #f9f9f9;">
+        <h2 class="section-title">Daily Adventures - Mini Camp</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; font-size: 1.1rem; color: #666;">On-site activities for ages 3-6</p>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Animal Care 1.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Animal Care</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Feeding and caring for goats, rabbits, and chickens</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Outdoor exploration.JPG'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Nature Exploration</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Discovery and wonder under 80+ palm trees</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Gardening.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Gardening</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Planting, harvesting, and learning where food comes from</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Baking.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Baking</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Making treats and learning kitchen skills</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Yoga.JPG'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Yoga & Mindfulness</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Movement and calm in the fresh air</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/2B662BBB-3C91-4A24-BC1C-7AF0A4AE576C.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Arts & Crafts</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Creating with natural materials and imagination</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Field Trips Section - Maxi Camp -->
+    <section style="padding: 80px 20px; background: white;">
+        <h2 class="section-title">Exciting Field Trips - Maxi Camp</h2>
+        <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; font-size: 1.1rem; color: #666;">Adventure-based experiences for ages 6-10</p>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Beach Day.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Beach Day</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Sun, sand, and ocean exploration</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_2047.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Shell Lake</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Aquatic adventures and wildlife discovery</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Elephant.jpg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Elephant Sanctuary</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Ethical elephant encounters and learning</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/Pearl.jpg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Marine Biology</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Ocean science and underwater exploration</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_1184.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Muay Thai</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Traditional Thai martial arts training</p>
+                </div>
+            </div>
+            <div style="position: relative; height: 350px; background-image: url('Finnish Research Slides/Absolute best/10 best/IMG_1185.jpeg'); background-size: cover; background-position: center; border-radius: 15px; overflow: hidden;">
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(122, 154, 59, 0.95), rgba(122, 154, 59, 0.7)); padding: 25px; color: white;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px; font-weight: 700;">Phuket Farm</h3>
+                    <p style="font-size: 0.95rem; line-height: 1.4;">Agricultural learning and farm experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register/Contact Section -->
+    <section style="padding: 100px 20px; background: #f9f9f9; text-align: center;">
+        <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 30px; color: #333;">Ready to Register?</h2>
+
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 60px;">
+            <a href="https://wa.me/66989124218" style="display: inline-flex; align-items: center; gap: 12px; padding: 20px 50px; background: #25D366; color: white; text-decoration: none; border-radius: 50px; font-size: 1.3rem; font-weight: 700; transition: all 0.3s; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);">
+                <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                Message Us on WhatsApp
+            </a>
+        </div>
+
+        <div style="max-width: 500px; margin: 0 auto; color: #666; font-size: 1.1rem; line-height: 2;">
+            <p>+66 98 912 4218</p>
+            <p>info@bamboovalleyphuket.com</p>
+            <p style="margin-top: 20px; font-size: 1rem; color: #999;">Bamboo Valley, Phuket</p>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
