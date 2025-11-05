@@ -218,6 +218,59 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .inline-carousel {
+            display: none;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .inline-carousel.active {
+            display: block;
+        }
+
+        .inline-carousel img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .inline-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
+
+        .inline-nav-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            min-height: 44px;
+            min-width: 80px;
+        }
+
+        .inline-nav-btn:active {
+            background: #5568d3;
+        }
+
+        .inline-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .inline-counter {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+
         .examples-btn {
             background: #667eea;
             color: white;
@@ -572,9 +625,17 @@
                                 <img
                                     src="${referenceImages[shot.activity_name][0]}"
                                     class="reference-preview"
-                                    onclick="openGallery('${shot.activity_name}')"
+                                    onclick="toggleInlineCarousel(${shot.id})"
                                     alt="Reference example"
                                 >
+                                <div class="inline-carousel" id="carousel-${shot.id}">
+                                    <img id="carousel-img-${shot.id}" src="${referenceImages[shot.activity_name][0]}" alt="Reference">
+                                    <div class="inline-nav">
+                                        <button class="inline-nav-btn" onclick="navigateInline(${shot.id}, -1)">← Prev</button>
+                                        <span class="inline-counter" id="counter-${shot.id}">1 / ${referenceImages[shot.activity_name].length}</span>
+                                        <button class="inline-nav-btn" onclick="navigateInline(${shot.id}, 1)">Next →</button>
+                                    </div>
+                                </div>
                             ` : ''}
 
                             <div class="shot-types">
@@ -612,11 +673,6 @@
                                         <div class="shot-tips-list">${shot.photography_tips}</div>
                                     </div>
                                 ` : ''}
-                            ${hasExamples ? `
-                                <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
-                                    <span>📷</span> View All ${referenceImages[shot.activity_name].length} Examples
-                                </button>
-                            ` : ''}
                         </div>
                     </div>
                 `;
@@ -660,6 +716,43 @@
                     }
                 });
             }, 500);
+        }
+
+        const carouselState = {};
+
+        function toggleInlineCarousel(shotId) {
+            const carousel = document.getElementById(`carousel-${shotId}`);
+            carousel.classList.toggle('active');
+
+            if (!carouselState[shotId]) {
+                carouselState[shotId] = { currentIndex: 0 };
+            }
+        }
+
+        function navigateInline(shotId, direction) {
+            const shot = shots.find(s => s.id === shotId);
+            if (!shot) return;
+
+            const images = referenceImages[shot.activity_name];
+            if (!images) return;
+
+            if (!carouselState[shotId]) {
+                carouselState[shotId] = { currentIndex: 0 };
+            }
+
+            carouselState[shotId].currentIndex += direction;
+
+            if (carouselState[shotId].currentIndex < 0) {
+                carouselState[shotId].currentIndex = images.length - 1;
+            } else if (carouselState[shotId].currentIndex >= images.length) {
+                carouselState[shotId].currentIndex = 0;
+            }
+
+            const imgElement = document.getElementById(`carousel-img-${shotId}`);
+            const counterElement = document.getElementById(`counter-${shotId}`);
+
+            imgElement.src = images[carouselState[shotId].currentIndex];
+            counterElement.textContent = `${carouselState[shotId].currentIndex + 1} / ${images.length}`;
         }
 
         async function toggleShotType(id, shotType, isCompleted) {
