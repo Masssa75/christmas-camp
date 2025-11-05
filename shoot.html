@@ -622,13 +622,41 @@
             preloadImages();
         }
 
-        function preloadImages() {
-            Object.values(referenceImages).forEach(images => {
-                images.forEach(src => {
+        async function preloadImages() {
+            const activityOrder = [
+                'Animal Care with Goats',
+                'Nature Play / Mud Play',
+                'Outdoor Yoga',
+                'Sound Healing',
+                'Gardening/Farming',
+                'Outdoor Arts & Crafts',
+                'Nature Exploration',
+                'Kids in Action'
+            ];
+
+            // First: Load all preview images (first image of each activity) in order
+            for (const activity of activityOrder) {
+                if (referenceImages[activity] && referenceImages[activity][0]) {
                     const img = new Image();
-                    img.src = src;
+                    img.src = referenceImages[activity][0];
+                    await new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+                }
+            }
+
+            // Then: Load remaining images in background
+            setTimeout(() => {
+                activityOrder.forEach(activity => {
+                    if (referenceImages[activity]) {
+                        referenceImages[activity].slice(1).forEach(src => {
+                            const img = new Image();
+                            img.src = src;
+                        });
+                    }
                 });
-            });
+            }, 500);
         }
 
         async function toggleShotType(id, shotType, isCompleted) {
