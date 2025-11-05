@@ -157,6 +157,30 @@
             margin-bottom: 10px;
         }
 
+        .shot-tips {
+            background: #f8f9fa;
+            border-left: 3px solid #667eea;
+            padding: 12px 14px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+
+        .shot-tips-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .shot-tips-list {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #444;
+            white-space: pre-line;
+        }
+
         .examples-btn {
             background: #667eea;
             color: white;
@@ -436,6 +460,12 @@
                                 </div>
                                 ${shot.description ? `<div class="shot-description">${shot.description}</div>` : ''}
                                 ${shot.message_focus ? `<div class="shot-focus">Focus: ${shot.message_focus}</div>` : ''}
+                                ${shot.photography_tips ? `
+                                    <div class="shot-tips">
+                                        <div class="shot-tips-title">📸 Key Elements</div>
+                                        <div class="shot-tips-list">${shot.photography_tips}</div>
+                                    </div>
+                                ` : ''}
                                 ${hasExamples ? `
                                     <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
                                         <span>📷</span> View ${referenceImages[shot.activity_name].length} Examples
