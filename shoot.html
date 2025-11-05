@@ -446,7 +446,14 @@
                 return;
             }
 
-            container.innerHTML = shots.map(shot => {
+            const sortedShots = [...shots].sort((a, b) => {
+                if (a.is_completed === b.is_completed) {
+                    return a.sort_order - b.sort_order;
+                }
+                return a.is_completed ? 1 : -1;
+            });
+
+            container.innerHTML = sortedShots.map(shot => {
                 const hasExamples = referenceImages[shot.activity_name];
                 return `
                     <div class="shot-item ${shot.is_completed ? 'completed' : ''}" data-id="${shot.id}">
@@ -501,15 +508,7 @@
                     shot.completed_at = isCompleted ? new Date().toISOString() : null;
                 }
 
-                const shotElement = document.querySelector(`[data-id="${id}"]`);
-                if (shotElement) {
-                    if (isCompleted) {
-                        shotElement.classList.add('completed');
-                    } else {
-                        shotElement.classList.remove('completed');
-                    }
-                }
-
+                renderShots();
                 updateStats();
             } catch (error) {
                 console.error('Error updating shot:', error);
