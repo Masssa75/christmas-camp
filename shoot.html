@@ -101,6 +101,34 @@
             margin-top: 2px;
         }
 
+        .shot-types {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .shot-type {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+        }
+
+        .shot-type input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #4caf50;
+        }
+
+        .shot-type-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+        }
+
         input[type="checkbox"] {
             width: 28px;
             height: 28px;
@@ -459,65 +487,85 @@
             }
 
             const sortedShots = [...shots].sort((a, b) => {
-                if (a.is_completed === b.is_completed) {
+                const aAllCompleted = a.wide_shot_completed && a.closeup_completed && a.atmospheric_completed;
+                const bAllCompleted = b.wide_shot_completed && b.closeup_completed && b.atmospheric_completed;
+                if (aAllCompleted === bAllCompleted) {
                     return a.sort_order - b.sort_order;
                 }
-                return a.is_completed ? 1 : -1;
+                return aAllCompleted ? 1 : -1;
             });
 
             container.innerHTML = sortedShots.map(shot => {
                 const hasExamples = referenceImages[shot.activity_name];
+                const allCompleted = shot.wide_shot_completed && shot.closeup_completed && shot.atmospheric_completed;
                 return `
-                    <div class="shot-item ${shot.is_completed ? 'completed' : ''}" data-id="${shot.id}">
-                        <div class="shot-header">
-                            <div class="checkbox-wrapper">
-                                <input
-                                    type="checkbox"
-                                    ${shot.is_completed ? 'checked' : ''}
-                                    onchange="toggleShot(${shot.id}, this.checked)"
-                                >
+                    <div class="shot-item ${allCompleted ? 'completed' : ''}" data-id="${shot.id}">
+                        <div class="shot-content" style="width: 100%;">
+                            <div class="shot-title">
+                                <span>${shot.activity_name}</span>
+                                <span class="priority-badge priority-${shot.priority.toLowerCase()}">${shot.priority}</span>
                             </div>
-                            <div class="shot-content">
-                                <div class="shot-title">
-                                    <span>${shot.activity_name}</span>
-                                    <span class="priority-badge priority-${shot.priority.toLowerCase()}">${shot.priority}</span>
-                                </div>
-                                ${shot.description ? `<div class="shot-description">${shot.description}</div>` : ''}
-                                ${shot.message_focus ? `<div class="shot-focus">Focus: ${shot.message_focus}</div>` : ''}
+
+                            <div class="shot-types">
+                                <label class="shot-type">
+                                    <input
+                                        type="checkbox"
+                                        ${shot.wide_shot_completed ? 'checked' : ''}
+                                        onchange="toggleShotType(${shot.id}, 'wide_shot_completed', this.checked)"
+                                    >
+                                    <span class="shot-type-label">📐 Wide Shot</span>
+                                </label>
+                                <label class="shot-type">
+                                    <input
+                                        type="checkbox"
+                                        ${shot.closeup_completed ? 'checked' : ''}
+                                        onchange="toggleShotType(${shot.id}, 'closeup_completed', this.checked)"
+                                    >
+                                    <span class="shot-type-label">👁️ Close-up</span>
+                                </label>
+                                <label class="shot-type">
+                                    <input
+                                        type="checkbox"
+                                        ${shot.atmospheric_completed ? 'checked' : ''}
+                                        onchange="toggleShotType(${shot.id}, 'atmospheric_completed', this.checked)"
+                                    >
+                                    <span class="shot-type-label">✨ Atmospheric</span>
+                                </label>
+                            </div>
+
+                            ${shot.description ? `<div class="shot-description">${shot.description}</div>` : ''}
+                            ${shot.message_focus ? `<div class="shot-focus">Focus: ${shot.message_focus}</div>` : ''}
                                 ${shot.photography_tips ? `
                                     <div class="shot-tips">
                                         <div class="shot-tips-title">📸 Key Elements</div>
                                         <div class="shot-tips-list">${shot.photography_tips}</div>
                                     </div>
                                 ` : ''}
-                                ${hasExamples ? `
-                                    <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
-                                        <span>📷</span> View ${referenceImages[shot.activity_name].length} Examples
-                                    </button>
-                                ` : ''}
-                            </div>
+                            ${hasExamples ? `
+                                <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
+                                    <span>📷</span> View ${referenceImages[shot.activity_name].length} Examples
+                                </button>
+                            ` : ''}
                         </div>
                     </div>
                 `;
             }).join('');
         }
 
-        async function toggleShot(id, isCompleted) {
+        async function toggleShotType(id, shotType, isCompleted) {
             try {
+                const updateData = { [shotType]: isCompleted };
+
                 const { error } = await supabaseClient
                     .from('photo_shot_list')
-                    .update({
-                        is_completed: isCompleted,
-                        completed_at: isCompleted ? new Date().toISOString() : null
-                    })
+                    .update(updateData)
                     .eq('id', id);
 
                 if (error) throw error;
 
                 const shot = shots.find(s => s.id === id);
                 if (shot) {
-                    shot.is_completed = isCompleted;
-                    shot.completed_at = isCompleted ? new Date().toISOString() : null;
+                    shot[shotType] = isCompleted;
                 }
 
                 renderShots();
@@ -525,18 +573,23 @@
             } catch (error) {
                 console.error('Error updating shot:', error);
                 alert('Failed to update shot. Please try again.');
-                const checkbox = document.querySelector(`[data-id="${id}"] input[type="checkbox"]`);
-                if (checkbox) checkbox.checked = !isCompleted;
+                renderShots();
             }
         }
 
         function updateStats() {
-            const completed = shots.filter(s => s.is_completed).length;
-            const total = shots.length;
-            const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+            let completedCount = 0;
+            shots.forEach(shot => {
+                if (shot.wide_shot_completed) completedCount++;
+                if (shot.closeup_completed) completedCount++;
+                if (shot.atmospheric_completed) completedCount++;
+            });
 
-            document.getElementById('completedCount').textContent = completed;
-            document.getElementById('totalCount').textContent = total;
+            const totalShots = shots.length * 3;
+            const percent = totalShots > 0 ? Math.round((completedCount / totalShots) * 100) : 0;
+
+            document.getElementById('completedCount').textContent = completedCount;
+            document.getElementById('totalCount').textContent = totalShots;
             document.getElementById('progressPercent').textContent = percent + '%';
         }
 
