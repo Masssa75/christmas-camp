@@ -568,6 +568,15 @@
                                 <span class="priority-badge priority-${shot.priority.toLowerCase()}">${shot.priority}</span>
                             </div>
 
+                            ${hasExamples ? `
+                                <img
+                                    src="${referenceImages[shot.activity_name][0]}"
+                                    class="reference-preview"
+                                    onclick="openGallery('${shot.activity_name}')"
+                                    alt="Reference example"
+                                >
+                            ` : ''}
+
                             <div class="shot-types">
                                 <label class="shot-type">
                                     <input
@@ -604,12 +613,6 @@
                                     </div>
                                 ` : ''}
                             ${hasExamples ? `
-                                <img
-                                    src="${referenceImages[shot.activity_name][0]}"
-                                    class="reference-preview"
-                                    onclick="openGallery('${shot.activity_name}')"
-                                    alt="Reference example"
-                                >
                                 <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
                                     <span>📷</span> View All ${referenceImages[shot.activity_name].length} Examples
                                 </button>
