@@ -209,6 +209,15 @@
             white-space: pre-line;
         }
 
+        .reference-preview {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .examples-btn {
             background: #667eea;
             color: white;
@@ -595,14 +604,31 @@
                                     </div>
                                 ` : ''}
                             ${hasExamples ? `
+                                <img
+                                    src="${referenceImages[shot.activity_name][0]}"
+                                    class="reference-preview"
+                                    onclick="openGallery('${shot.activity_name}')"
+                                    alt="Reference example"
+                                >
                                 <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
-                                    <span>📷</span> View ${referenceImages[shot.activity_name].length} Examples
+                                    <span>📷</span> View All ${referenceImages[shot.activity_name].length} Examples
                                 </button>
                             ` : ''}
                         </div>
                     </div>
                 `;
             }).join('');
+
+            preloadImages();
+        }
+
+        function preloadImages() {
+            Object.values(referenceImages).forEach(images => {
+                images.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+            });
         }
 
         async function toggleShotType(id, shotType, isCompleted) {
