@@ -115,6 +115,61 @@
             color: #c62828;
         }
 
+        .privacy-section {
+            margin-top: 16px;
+        }
+
+        .privacy-no {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .privacy-no h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #c62828;
+            font-weight: 700;
+        }
+
+        .privacy-ok {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .privacy-ok h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #2e7d32;
+            font-weight: 700;
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+        }
+
+        .privacy-grid img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .privacy-no .privacy-grid img {
+            border-color: #f44336;
+        }
+
+        .privacy-ok .privacy-grid img {
+            border-color: #4caf50;
+        }
+
         .shots-list {
             padding: 16px;
         }
@@ -504,8 +559,24 @@
                 <li><strong>Highlight greenness</strong> - Find angles showing lush nature (location still growing back)</li>
                 <li><strong>Goal:</strong> Parents see "my child is developing real skills" not "pretty place"</li>
             </ul>
-            <div class="warning">
-                ⚠️ PRIVACY: [PLACEHOLDER - ADD PHOTOS OF KIDS WE CANNOT POST]
+            <div class="privacy-section">
+                <div class="privacy-no">
+                    <h4>🚫 DO NOT PHOTOGRAPH THESE KIDS</h4>
+                    <div class="privacy-grid">
+                        <img src="shot-references/Privacy-no-1.jpg" alt="Do not photograph">
+                    </div>
+                </div>
+                <div class="privacy-ok">
+                    <h4>✅ OK TO PHOTOGRAPH</h4>
+                    <div class="privacy-grid">
+                        <img src="shot-references/Privacy-ok-1.png" alt="OK to photograph">
+                        <img src="shot-references/Privacy-ok-2.png" alt="OK to photograph">
+                        <img src="shot-references/Privacy-ok-3.png" alt="OK to photograph">
+                        <img src="shot-references/Privacy-ok-4.png" alt="OK to photograph">
+                        <img src="shot-references/Privacy-ok-5.png" alt="OK to photograph">
+                        <img src="shot-references/Privacy-ok-6.png" alt="OK to photograph">
+                    </div>
+                </div>
             </div>
         </div>
 
