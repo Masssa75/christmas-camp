@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Photography Shot List - Phuket Camp</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
@@ -10,13 +10,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
@@ -31,25 +32,25 @@
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 30px;
+            padding: 24px 20px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .header p {
-            font-size: 16px;
+            font-size: 15px;
             opacity: 0.9;
         }
 
         .stats {
             display: flex;
             justify-content: space-around;
-            padding: 20px;
+            padding: 16px;
             background: #f8f9fa;
             border-bottom: 1px solid #e0e0e0;
         }
@@ -59,34 +60,28 @@
         }
 
         .stat-number {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #667eea;
         }
 
         .stat-label {
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
             margin-top: 4px;
         }
 
         .shots-list {
-            padding: 20px;
+            padding: 16px;
         }
 
         .shot-item {
             background: white;
             border: 2px solid #e0e0e0;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .shot-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            padding: 16px;
+            margin-bottom: 14px;
+            transition: all 0.2s ease;
         }
 
         .shot-item.completed {
@@ -97,7 +92,7 @@
         .shot-header {
             display: flex;
             align-items: flex-start;
-            gap: 16px;
+            gap: 14px;
             margin-bottom: 12px;
         }
 
@@ -107,8 +102,8 @@
         }
 
         input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             cursor: pointer;
             accent-color: #4caf50;
         }
@@ -118,20 +113,21 @@
         }
 
         .shot-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 600;
             color: #333;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .priority-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -148,16 +144,144 @@
 
         .shot-description {
             color: #666;
-            font-size: 15px;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.5;
             margin-bottom: 8px;
         }
 
         .shot-focus {
             color: #667eea;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .examples-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+            min-height: 44px;
+        }
+
+        .examples-btn:active {
+            background: #5568d3;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            overflow: auto;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 16px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 32px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 0;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .gallery-image {
+            max-width: 100%;
+            max-height: calc(100vh - 180px);
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 32px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-nav:active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .gallery-nav.prev {
+            left: 16px;
+        }
+
+        .gallery-nav.next {
+            right: 16px;
+        }
+
+        .gallery-counter {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .loading {
@@ -188,44 +312,6 @@
             margin: 20px;
             border-radius: 8px;
             text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-
-            .header {
-                padding: 20px;
-            }
-
-            .header h1 {
-                font-size: 22px;
-            }
-
-            .header p {
-                font-size: 14px;
-            }
-
-            .stats {
-                padding: 15px;
-            }
-
-            .stat-number {
-                font-size: 24px;
-            }
-
-            .shot-item {
-                padding: 16px;
-            }
-
-            .shot-title {
-                font-size: 16px;
-            }
-
-            .shot-description {
-                font-size: 14px;
-            }
         }
     </style>
 </head>
@@ -259,6 +345,23 @@
         </div>
     </div>
 
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Reference Images</div>
+                <button class="close-btn" onclick="closeGallery()">&times;</button>
+            </div>
+            <div class="gallery-container">
+                <button class="gallery-nav prev" onclick="prevImage()">‹</button>
+                <img id="galleryImage" class="gallery-image" src="" alt="Reference">
+                <button class="gallery-nav next" onclick="nextImage()">›</button>
+            </div>
+            <div class="gallery-counter">
+                <span id="galleryCounter">1 / 7</span>
+            </div>
+        </div>
+    </div>
+
     <script>
         const SUPABASE_URL = 'https://xunccqdrybxpwcvafvag.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh1bmNjcWRyeWJ4cHdjdmFmdmFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNDY5MDMsImV4cCI6MjA2NjkyMjkwM30.rRAs7qWQpQ8rV_LIY5x6FeSaBk6etotb_9IHbYHPXf8';
@@ -267,6 +370,20 @@
         const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let shots = [];
+        let currentGallery = [];
+        let currentImageIndex = 0;
+
+        const referenceImages = {
+            'Animal Care with Goats': [
+                'shot-references/Animal care 1.png',
+                'shot-references/Animal care 2.png',
+                'shot-references/Animal care 3.png',
+                'shot-references/Animal care 4.png',
+                'shot-references/Animal care 5.png',
+                'shot-references/Animal care 6.png',
+                'shot-references/Animal care 7.png'
+            ]
+        };
 
         async function loadShots() {
             try {
@@ -300,27 +417,35 @@
                 return;
             }
 
-            container.innerHTML = shots.map(shot => `
-                <div class="shot-item ${shot.is_completed ? 'completed' : ''}" data-id="${shot.id}">
-                    <div class="shot-header">
-                        <div class="checkbox-wrapper">
-                            <input
-                                type="checkbox"
-                                ${shot.is_completed ? 'checked' : ''}
-                                onchange="toggleShot(${shot.id}, this.checked)"
-                            >
-                        </div>
-                        <div class="shot-content">
-                            <div class="shot-title">
-                                <span>${shot.activity_name}</span>
-                                <span class="priority-badge priority-${shot.priority.toLowerCase()}">${shot.priority}</span>
+            container.innerHTML = shots.map(shot => {
+                const hasExamples = referenceImages[shot.activity_name];
+                return `
+                    <div class="shot-item ${shot.is_completed ? 'completed' : ''}" data-id="${shot.id}">
+                        <div class="shot-header">
+                            <div class="checkbox-wrapper">
+                                <input
+                                    type="checkbox"
+                                    ${shot.is_completed ? 'checked' : ''}
+                                    onchange="toggleShot(${shot.id}, this.checked)"
+                                >
                             </div>
-                            ${shot.description ? `<div class="shot-description">${shot.description}</div>` : ''}
-                            ${shot.message_focus ? `<div class="shot-focus">Focus: ${shot.message_focus}</div>` : ''}
+                            <div class="shot-content">
+                                <div class="shot-title">
+                                    <span>${shot.activity_name}</span>
+                                    <span class="priority-badge priority-${shot.priority.toLowerCase()}">${shot.priority}</span>
+                                </div>
+                                ${shot.description ? `<div class="shot-description">${shot.description}</div>` : ''}
+                                ${shot.message_focus ? `<div class="shot-focus">Focus: ${shot.message_focus}</div>` : ''}
+                                ${hasExamples ? `
+                                    <button class="examples-btn" onclick="openGallery('${shot.activity_name}')">
+                                        <span>📷</span> View ${referenceImages[shot.activity_name].length} Examples
+                                    </button>
+                                ` : ''}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         async function toggleShot(id, isCompleted) {
@@ -335,14 +460,12 @@
 
                 if (error) throw error;
 
-                // Update local state
                 const shot = shots.find(s => s.id === id);
                 if (shot) {
                     shot.is_completed = isCompleted;
                     shot.completed_at = isCompleted ? new Date().toISOString() : null;
                 }
 
-                // Update UI
                 const shotElement = document.querySelector(`[data-id="${id}"]`);
                 if (shotElement) {
                     if (isCompleted) {
@@ -356,7 +479,6 @@
             } catch (error) {
                 console.error('Error updating shot:', error);
                 alert('Failed to update shot. Please try again.');
-                // Revert checkbox
                 const checkbox = document.querySelector(`[data-id="${id}"] input[type="checkbox"]`);
                 if (checkbox) checkbox.checked = !isCompleted;
             }
@@ -371,6 +493,66 @@
             document.getElementById('totalCount').textContent = total;
             document.getElementById('progressPercent').textContent = percent + '%';
         }
+
+        function openGallery(activityName) {
+            currentGallery = referenceImages[activityName] || [];
+            if (currentGallery.length === 0) return;
+
+            currentImageIndex = 0;
+            document.getElementById('modalTitle').textContent = activityName + ' - Reference Images';
+            showCurrentImage();
+            document.getElementById('galleryModal').classList.add('active');
+        }
+
+        function closeGallery() {
+            document.getElementById('galleryModal').classList.remove('active');
+        }
+
+        function showCurrentImage() {
+            const img = document.getElementById('galleryImage');
+            img.src = currentGallery[currentImageIndex];
+            document.getElementById('galleryCounter').textContent =
+                `${currentImageIndex + 1} / ${currentGallery.length}`;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+            showCurrentImage();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+            showCurrentImage();
+        }
+
+        // Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.getElementById('galleryModal').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        document.getElementById('galleryModal').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextImage();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevImage();
+            }
+        }
+
+        // Close modal on background click
+        document.getElementById('galleryModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('galleryModal')) {
+                closeGallery();
+            }
+        });
 
         // Load shots on page load
         loadShots();
