@@ -308,65 +308,60 @@
             white-space: pre-line;
         }
 
-        .reference-preview {
+        .reference-container {
+            position: relative;
             width: 100%;
             max-width: 400px;
-            border-radius: 8px;
             margin: 10px 0;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .inline-carousel {
-            display: none;
-            margin: 10px 0;
-            position: relative;
-        }
-
-        .inline-carousel.active {
-            display: block;
-        }
-
-        .inline-carousel img {
+        .reference-preview {
             width: 100%;
-            max-width: 600px;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             display: block;
-            margin: 0 auto;
         }
 
-        .inline-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 10px;
-            gap: 10px;
-        }
-
-        .inline-nav-btn {
-            background: #667eea;
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
-            min-height: 44px;
-            min-width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
         }
 
-        .inline-nav-btn:active {
-            background: #5568d3;
+        .carousel-arrow:active {
+            background: rgba(0, 0, 0, 0.7);
         }
 
-        .inline-nav-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
+        .carousel-arrow.left {
+            left: 10px;
         }
 
-        .inline-counter {
-            font-size: 14px;
-            color: #666;
+        .carousel-arrow.right {
+            right: 10px;
+        }
+
+        .carousel-counter {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
             font-weight: 600;
         }
 
@@ -751,19 +746,18 @@
                             </div>
 
                             ${hasExamples ? `
-                                <img
-                                    src="${referenceImages[shot.activity_name][0]}"
-                                    class="reference-preview"
-                                    onclick="toggleInlineCarousel(${shot.id})"
-                                    alt="Reference example"
-                                >
-                                <div class="inline-carousel" id="carousel-${shot.id}">
-                                    <img id="carousel-img-${shot.id}" src="${referenceImages[shot.activity_name][0]}" alt="Reference">
-                                    <div class="inline-nav">
-                                        <button class="inline-nav-btn" onclick="navigateInline(${shot.id}, -1)">← Prev</button>
-                                        <span class="inline-counter" id="counter-${shot.id}">1 / ${referenceImages[shot.activity_name].length}</span>
-                                        <button class="inline-nav-btn" onclick="navigateInline(${shot.id}, 1)">Next →</button>
-                                    </div>
+                                <div class="reference-container" id="container-${shot.id}">
+                                    <img
+                                        src="${referenceImages[shot.activity_name][0]}"
+                                        class="reference-preview"
+                                        id="preview-${shot.id}"
+                                        alt="Reference example"
+                                    >
+                                    ${referenceImages[shot.activity_name].length > 1 ? `
+                                        <button class="carousel-arrow left" onclick="navigateInline(${shot.id}, -1)">‹</button>
+                                        <button class="carousel-arrow right" onclick="navigateInline(${shot.id}, 1)">›</button>
+                                        <div class="carousel-counter" id="counter-${shot.id}">1 / ${referenceImages[shot.activity_name].length}</div>
+                                    ` : ''}
                                 </div>
                             ` : ''}
 
@@ -849,21 +843,12 @@
 
         const carouselState = {};
 
-        function toggleInlineCarousel(shotId) {
-            const carousel = document.getElementById(`carousel-${shotId}`);
-            carousel.classList.toggle('active');
-
-            if (!carouselState[shotId]) {
-                carouselState[shotId] = { currentIndex: 0 };
-            }
-        }
-
         function navigateInline(shotId, direction) {
             const shot = shots.find(s => s.id === shotId);
             if (!shot) return;
 
             const images = referenceImages[shot.activity_name];
-            if (!images) return;
+            if (!images || images.length <= 1) return;
 
             if (!carouselState[shotId]) {
                 carouselState[shotId] = { currentIndex: 0 };
@@ -877,12 +862,51 @@
                 carouselState[shotId].currentIndex = 0;
             }
 
-            const imgElement = document.getElementById(`carousel-img-${shotId}`);
+            const imgElement = document.getElementById(`preview-${shotId}`);
             const counterElement = document.getElementById(`counter-${shotId}`);
 
             imgElement.src = images[carouselState[shotId].currentIndex];
             counterElement.textContent = `${carouselState[shotId].currentIndex + 1} / ${images.length}`;
         }
+
+        // Add swipe gesture support
+        document.addEventListener('DOMContentLoaded', function() {
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let currentContainer = null;
+
+            document.addEventListener('touchstart', function(e) {
+                const container = e.target.closest('.reference-container');
+                if (container) {
+                    currentContainer = container;
+                    touchStartX = e.changedTouches[0].screenX;
+                }
+            }, false);
+
+            document.addEventListener('touchend', function(e) {
+                if (currentContainer) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                    currentContainer = null;
+                }
+            }, false);
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    const shotId = parseInt(currentContainer.id.replace('container-', ''));
+                    if (diff > 0) {
+                        // Swipe left - next image
+                        navigateInline(shotId, 1);
+                    } else {
+                        // Swipe right - previous image
+                        navigateInline(shotId, -1);
+                    }
+                }
+            }
+        });
 
         async function toggleShotType(id, shotType, isCompleted) {
             try {
