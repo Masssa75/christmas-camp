@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity List Design Options</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #f5f5f5;
+        }
+
+        .option-section {
+            margin-bottom: 0;
+        }
+
+        .option-label {
+            background: #7a9a3b;
+            color: white;
+            padding: 15px 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 80px;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.20);
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .hero-header {
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Option 1 - Checkmark List */
+        .checklist {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .checklist li {
+            font-size: 1.2rem;
+            padding: 10px 0;
+            position: relative;
+            padding-left: 35px;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: white;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        /* Option 2 - Pill Tags */
+        .pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .pill {
+            background: white;
+            color: #7a9a3b;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid white;
+        }
+
+        /* Option 3 - Icon List (Single Column) */
+        .icon-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .icon-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 8px 0;
+        }
+
+        .icon-item span {
+            font-size: 1.5rem;
+        }
+
+        /* Option 4 - Bullet List Simple */
+        .bullet-list {
+            margin-left: 25px;
+            margin-top: 20px;
+        }
+
+        .bullet-list li {
+            font-size: 1.2rem;
+            padding: 8px 0;
+            font-weight: 500;
+        }
+
+        /* Option 5 - Horizontal Badge Row */
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Option 6 - With CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #333;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.2s;
+            margin-top: 40px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Option 7 - Lucide Icon List (Single Column) */
+        .lucide-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .lucide-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 8px 0;
+        }
+
+        .lucide-item i {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 500px;
+                padding: 60px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .icon-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lucide-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Option 1: Checkmark List -->
+    <div class="option-section">
+        <div class="option-label">Option 1 - Checkmark List</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills:</p>
+                <ul class="checklist">
+                    <li>Animal care</li>
+                    <li>Gardening</li>
+                    <li>Baking</li>
+                    <li>Yoga</li>
+                    <li>Music</li>
+                    <li>Meditation</li>
+                    <li>Arts & crafts</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Option 2: Pill Tags -->
+    <div class="option-section">
+        <div class="option-label">Option 2 - Pill Tags</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills</p>
+                <div class="pill-container">
+                    <div class="pill">Animal care</div>
+                    <div class="pill">Gardening</div>
+                    <div class="pill">Baking</div>
+                    <div class="pill">Yoga</div>
+                    <div class="pill">Music</div>
+                    <div class="pill">Meditation</div>
+                    <div class="pill">Arts & crafts</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Option 3: Icon List -->
+    <div class="option-section">
+        <div class="option-label">Option 3 - Emoji List (Single Column)</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills</p>
+                <div class="icon-grid">
+                    <div class="icon-item"><span>🐰</span> Animal care</div>
+                    <div class="icon-item"><span>🌱</span> Gardening</div>
+                    <div class="icon-item"><span>🥖</span> Baking</div>
+                    <div class="icon-item"><span>🧘</span> Yoga</div>
+                    <div class="icon-item"><span>🎵</span> Music</div>
+                    <div class="icon-item"><span>🧘‍♀️</span> Meditation</div>
+                    <div class="icon-item"><span>🎨</span> Arts & crafts</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Option 4: Simple Bullet List -->
+    <div class="option-section">
+        <div class="option-label">Option 4 - Simple Bullets</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills:</p>
+                <ul class="bullet-list">
+                    <li>Animal care</li>
+                    <li>Gardening</li>
+                    <li>Baking</li>
+                    <li>Yoga</li>
+                    <li>Music</li>
+                    <li>Meditation</li>
+                    <li>Arts & crafts</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!-- Option 5: Badge Row -->
+    <div class="option-section">
+        <div class="option-label">Option 5 - Glass Badge Row</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills</p>
+                <div class="badge-row">
+                    <div class="badge">Animal care</div>
+                    <div class="badge">Gardening</div>
+                    <div class="badge">Baking</div>
+                    <div class="badge">Yoga</div>
+                    <div class="badge">Music</div>
+                    <div class="badge">Meditation</div>
+                    <div class="badge">Arts & crafts</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Option 6: Checkmark List with WhatsApp Button -->
+    <div class="option-section">
+        <div class="option-label">Option 6 - Checkmark List + WhatsApp Button</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills:</p>
+                <ul class="checklist">
+                    <li>Animal care</li>
+                    <li>Gardening</li>
+                    <li>Baking</li>
+                    <li>Yoga</li>
+                    <li>Music</li>
+                    <li>Meditation</li>
+                    <li>Arts & crafts</li>
+                </ul>
+                <a href="https://wa.me/66989124218?text=Hi!%20I%27m%20interested%20in%20the%20Christmas%20Nature%20Camp." class="cta-button" style="display: inline-flex; align-items: center; gap: 12px;">
+                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                    WhatsApp: +66 98 912 4218
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Option 7: Lucide Icon List -->
+    <div class="option-section">
+        <div class="option-label">Option 7 - Lucide Icon List (Single Column)</div>
+        <section class="hero">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline>
+                    <source src="Finnish Research Slides/No text flyover.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="hero-content">
+                <div class="hero-header">Phuket Nature Camp</div>
+                <h1>Nature Skills for Life</h1>
+                <p class="hero-description">Science-backed outdoor program building immunity, confidence, and life skills</p>
+                <div class="lucide-grid">
+                    <div class="lucide-item"><i data-lucide="heart"></i> Animal care</div>
+                    <div class="lucide-item"><i data-lucide="sprout"></i> Gardening</div>
+                    <div class="lucide-item"><i data-lucide="cake"></i> Baking</div>
+                    <div class="lucide-item"><i data-lucide="activity"></i> Yoga</div>
+                    <div class="lucide-item"><i data-lucide="music"></i> Music</div>
+                    <div class="lucide-item"><i data-lucide="sparkles"></i> Meditation</div>
+                    <div class="lucide-item"><i data-lucide="palette"></i> Arts & crafts</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html>
